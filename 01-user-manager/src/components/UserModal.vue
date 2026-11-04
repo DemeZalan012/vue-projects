@@ -1,10 +1,16 @@
 <script setup>
+import { defineProps, ref } from 'vue';
+import { useUserStore } from '../../store/user';
+
 const props = defineProps({
   user: {
     type: Object,
     required: true,
   }
 });
+
+const userFormData = ref(props.user);
+const { modifyUser } = useUserStore();
 
 </script>
 
