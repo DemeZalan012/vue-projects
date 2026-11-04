@@ -16,3 +16,8 @@ export async function updateUser(id, name) {
     const response = await apiClient.put(`${urlFragment}/${id}`, name)
     return response.data;
 }
+
+export async function createUser(user) {
+    const response = await apiClient.post(`${urlFragment}`, user)
+    return response.data;
+}
