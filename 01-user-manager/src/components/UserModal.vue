@@ -1,12 +1,10 @@
 <script setup>
-import { ref } from 'vue'
-
-import { useUserStore } from '../../store/user.js'; 
-
-const { modifyUser } = useUserStore();
-
-
-const ertek = ref("")
+const props = defineProps({
+  user: {
+    type: Object,
+    required: true,
+  }
+});
 
 </script>
 
@@ -19,7 +17,19 @@ const ertek = ref("")
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <input type="text" v-model="ertek">
+        <form>
+        <div class="mb-3"></div>
+        <label for="firstName">Keresztnév: </label>
+        <input class="form-control" type="text" name="firstName" required id="firstName">
+
+        <div class="mb-3"></div>
+        <label for="lastName">CsaládNév: </label>
+        <input class="form-control" type="text" name="lastName" required id="lastName">
+
+        <div class="mb-3"></div>
+        <label for="e-mail">E-mail: </label>
+        <input class="form-control" type="text" name="e-mail" required id="e-mail">
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégse</button>
