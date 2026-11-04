@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, ref } from 'vue';
+import { defineProps, ref, watch } from 'vue';
 import { useUserStore } from '../../store/user';
 
 const props = defineProps({
@@ -9,8 +9,25 @@ const props = defineProps({
   }
 });
 
+const closeButton = ref();
+
 const userFormData = ref(props.user);
 const { modifyUser } = useUserStore();
+
+watch(() => props.user, (newUser) => {userFormData.value = {...newUser}}) 
+
+
+
+async function handleSaveButton() {
+  try {
+    await modifyUser(userFormData.value);
+    closeButton.value.click();
+  } catch (error) {
+    alert(error.message)
+  }
+}
+
+
 
 </script>
 
@@ -38,8 +55,8 @@ const { modifyUser } = useUserStore();
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégse</button>
-        <button type="button" class="btn btn-primary" @click="modifyUser(id, ertek)">Mentés</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" ref="closeButton">Mégse</button>
+        <button type="button" class="btn btn-primary" @click="handleSaveButton">Mentés</button>
       </div>
     </div>
   </div>

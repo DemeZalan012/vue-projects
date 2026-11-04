@@ -1,9 +1,16 @@
 <script setup>
 import { useUserStore } from '../../store/user.js'; 
 import UserModal from './UserModal.vue';
+import { ref } from 'vue';
 
 const { users, removeUser } = useUserStore();
 
+
+const selectedUser = ref({});
+
+function handleSelectedUser(user) {
+  selectedUser.value = {...user}
+}
 
 async function handleDeleteUser(id) {
 
@@ -16,7 +23,7 @@ if (valasz) {
   catch (error) {
     console.error("Hibás törlés!", error)
   }
-  }
+}
 }
 
 </script>
@@ -41,7 +48,7 @@ if (valasz) {
             <button type="button"
             class="btn btn-primary" 
             data-bs-toggle="modal" 
-            data-bs-target="#editUserModal">Edit</button>
+            data-bs-target="#editUserModal" @click="handleSelectedUser(user)">Edit</button>
             <button class="btn btn-danger" @click="handleDeleteUser(user.id)">Delete</button>
           </td>
         </tr>
@@ -49,7 +56,7 @@ if (valasz) {
 
   </table>
 
-  <UserModal/>
+  <UserModal v-if="selectedUser !== undefined" :user="selectedUser"/>
 </template>
 
 <style>
