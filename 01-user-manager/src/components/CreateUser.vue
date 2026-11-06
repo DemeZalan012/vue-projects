@@ -39,7 +39,7 @@ function handleCancelClick() {
 
 <template>
     <button @click="showForm">Create new User</button>
-    <form ref="createUserForm" action="" v-show="formIsVisible">
+    <form ref="createUserForm" action="" v-show="formIsVisible" >
         <div class="mb-3">
         <label for="firstName">Keresztnév: </label>
         <input class="form-control" type="text" name="firstName" required id="firstName" v-model="userFormData.firstName">
@@ -56,7 +56,7 @@ function handleCancelClick() {
         </div>
         
         <div class="mb-3">
-            <button class="btn btn-primary" @click="handleSaveClick">Save</button>
+            <button type="button" class="btn btn-primary" @click.prevent="handleSaveClick">Save</button>
             <button class="btn btn-secondary" @click="handleCancelClick">Cancel</button>
         </div>
     </form>

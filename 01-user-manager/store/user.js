@@ -20,7 +20,7 @@ export function useUserStore() {
 
     async function addUser(user) {
         const response = await createUser(user)
-        users.value = users.value.push(response)
+        users.value = [ response, ...users.value]
     }
 
     return {

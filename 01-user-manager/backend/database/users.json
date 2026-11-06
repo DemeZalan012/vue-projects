@@ -335,6 +335,24 @@
       "lastName": "teszt",
       "emailAdress": "teszt@teszt",
       "id": "HUX8xGnlQZM"
+    },
+    {
+      "firstName": "megvan ",
+      "lastName": "kész is",
+      "emailAdress": "kesz@van",
+      "id": "DWo3p06tvM8"
+    },
+    {
+      "firstName": "vala",
+      "lastName": "mi",
+      "emailAdress": "kukac@kak",
+      "id": "IVqXaKp8DtA"
+    },
+    {
+      "firstName": "sdf",
+      "lastName": "sdf",
+      "emailAdress": "sdf@sdf",
+      "id": "Zb3hBe8iv-I"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
