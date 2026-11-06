@@ -1,16 +1,37 @@
 <script setup>
-import { ref } from 'vue';
+import { reactive, ref } from 'vue';
+import { useUserStore } from '../../store/user';
+
 const formIsVisible = ref(false);
+const { addUser } = useUserStore();
+
+const createUserForm = ref();
+
+const userFormDataInitialState = {
+    firstName: "",
+    lastName: "",
+    emailAdress: ""
+}
+const userFormData = reactive({...userFormDataInitialState})
 
 function showForm() {
     formIsVisible.value = !formIsVisible.value;
+
 }
 
-function handleSaveClick() {
-    formIsVisible.value = false;
+async function handleSaveClick() {
+    try {
+    if (createUserForm.value.checkValidity()) {
+    await addUser(userFormData);
+    Object.assign(userFormData, userFormDataInitialState)
+    }
+    } catch(error) {
+        alert(error.message)
+    } 
+
 }
 
-function handleSaveClick() {
+function handleCancelClick() {
     formIsVisible.value = false;
 }
 
@@ -18,20 +39,20 @@ function handleSaveClick() {
 
 <template>
     <button @click="showForm">Create new User</button>
-    <form action="" v-show="formIsVisible">
+    <form ref="createUserForm" action="" v-show="formIsVisible">
         <div class="mb-3">
         <label for="firstName">Keresztnév: </label>
-        <input class="form-control" type="text" name="firstName" required id="firstName">
+        <input class="form-control" type="text" name="firstName" required id="firstName" v-model="userFormData.firstName">
         </div>
 
         <div class="mb-3">
         <label for="lastName">CsaládNév: </label>
-        <input class="form-control" type="text" name="lastName" required id="lastName">
+        <input class="form-control" type="text" name="lastName" required id="lastName" v-model="userFormData.lastName">
         </div>
 
         <div class="mb-3">
         <label for="e-mail">E-mail: </label>
-        <input class="form-control" type="email" name="e-mail" required id="e-mail">
+        <input class="form-control" type="email" name="e-mail" required id="e-mail" v-model="userFormData.emailAdress">
         </div>
         
         <div class="mb-3">
