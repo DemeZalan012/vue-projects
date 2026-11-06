@@ -21,6 +21,6 @@ function showForm() {
 
         <div class="mb-3"></div>
         <label for="e-mail">E-mail: </label>
-        <input class="form-control" type="text" name="e-mail" required id="e-mail">
+        <input class="form-control" type="email" name="e-mail" required id="e-mail">
     </form>
 </template>
