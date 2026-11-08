@@ -5,6 +5,9 @@ import { ref } from 'vue';
 
 const { users, removeUser } = useUserStore();
 
+const firstNameRef = ref("");
+const lastNameRef = ref("");
+const emailRef = ref("");
 
 const selectedUser = ref({});
 
@@ -32,15 +35,15 @@ if (valasz) {
 <table class="table table-striped">
     <thead>
       <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email address</th>
+        <th><label id="firstName" name="firstName">First Name:</label> <input type="text" placeholder="" id="firstName" name="firstName" v-model="firstNameRef" /></th>
+        <th><label id="lastName" name="lastName">Last Name:</label> <input type="text" placeholder="" id="lastName" name="lastName" v-model="lastNameRef" /></th>
+        <th><label id="email" name="email">Email address:</label> <input type="text" placeholder="" id="email" name="email" v-model="emailRef" /></th>
         <th>-</th>
       </tr>
     </thead>
 
-    <tbody>
-        <tr v-for="user in users" :key="user.id">
+    <tbody v-for="user in users" :key="user.id">
+        <tr v-if="user.firstName.includes(firstNameRef) && user.lastName.includes(lastNameRef) && user.emailAdress.includes(emailRef)">
           <td>{{ user.firstName }}</td>
           <td>{{ user.lastName }}</td>
           <td>{{ user.emailAdress }}</td>
